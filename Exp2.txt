@@ -1,0 +1,71 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+class Person {
+    string name, dob, bloodGroup, address, license, insurance;
+    float height, weight;
+    long int contact;
+
+public:
+    static int count; 
+
+    Person() : name("Unknown"), dob("dd/mm/yy"), bloodGroup("A+"), height(0), weight(0), contact(0) {
+        address = "Unknown";
+        license = "Unknown";
+        insurance = "Unknown";
+    }
+
+    void getData() {
+        cout << "Enter Name: "; cin >> name;
+        cout << "Enter Date of Birth (dd/mm/yy): "; cin >> dob;
+        cout << "Enter Blood Group: "; cin >> bloodGroup;
+        cout << "Enter Height (in cm): "; cin >> height;
+        cout << "Enter Weight (in kg): "; cin >> weight;
+        cout << "Enter Address: "; cin >> address;
+        cout << "Enter License Number: "; cin >> license;
+        cout << "Enter Insurance Number: "; cin >> insurance;
+        cout << "Enter Contact Number: "; cin >> contact;
+        count++;
+    }
+
+    void display() const {
+        cout << "\nName: " << name
+             << "\nDate of Birth: " << dob
+             << "\nBlood Group: " << bloodGroup
+             << "\nHeight: " << height
+             << "\nWeight: " << weight
+             << "\nAddress: " << address
+             << "\nLicense: " << license
+             << "\nInsurance: " << insurance
+             << "\nContact: " << contact << endl;
+    }
+
+    static void showCount() {
+        cout << "\nTotal Records: " << count << endl;
+    }
+};
+
+int Person::count = 0;
+
+int main() {
+    int n;
+    cout << "How many records do you want to enter? ";
+    cin >> n;
+
+    Person persons[n]; 
+
+    for (int i = 0; i < n; i++) {
+        cout << "\nEntering details for person " << (i + 1) << ":\n";
+        persons[i].getData();
+    }
+
+    cout << "\nDisplaying all records:\n";
+    for (int i = 0; i < n; i++) {
+        persons[i].display();
+    }
+
+    Person::showCount();
+
+    return 0;
+}
